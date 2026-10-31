@@ -1,9 +1,9 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#F1F7F7;color:#2C3636}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#F2F9FF;color:#021024}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Money Counter</title>
 <script>/* Apply the theme saved by the in-app light/dark switch before first paint. */
 try { var t = localStorage.getItem('money-counter/theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
-<meta name="theme-color" content="#F1F7F7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1B2222" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F2F9FF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#021024" media="(prefers-color-scheme: dark)">
 <!-- Installable web app: "Add to Home Screen" opens full screen without browser bars. -->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="mobile-web-app-capable" content="yes">
@@ -15,12 +15,12 @@ try { var t = localStorage.getItem('money-counter/theme'); if (t) document.docum
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-  /* Palette: #F7CBCA pink, #DDD3D3 warm gray, #F1F7F7 mint white, #D5E5E5 mist, #B0D7D8 aqua, #5D6B6B slate. */
-  :root { --bg: #F1F7F7; --fg: #2C3636; color-scheme: light; }
+  /* Palette: #021024 ink, #052659 navy, #5483B3 blue, #7DA0CA steel, #C1E8FF ice. */
+  :root { --bg: #F2F9FF; --fg: #021024; color-scheme: light; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #1B2222; --fg: #F1F7F7; color-scheme: dark; }
+    :root:not([data-theme="light"]) { --bg: #021024; --fg: #EAF6FF; color-scheme: dark; }
   }
-  :root[data-theme="dark"] { --bg: #1B2222; --fg: #F1F7F7; color-scheme: dark; }
+  :root[data-theme="dark"] { --bg: #021024; --fg: #EAF6FF; color-scheme: dark; }
   /* San Francisco on Apple devices; Inter as the closest match elsewhere. */
   body, body * {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro Icons", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
