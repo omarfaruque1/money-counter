@@ -1,29 +1,60 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#F5F5F7;color:#1D1D1F}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#F1F7F7;color:#2C3636}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Money Counter</title>
 <script>/* Apply the theme saved by the in-app light/dark switch before first paint. */
 try { var t = localStorage.getItem('money-counter/theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
-<meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F1F7F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B2222" media="(prefers-color-scheme: dark)">
+<!-- Installable web app: "Add to Home Screen" opens full screen without browser bars. -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Money Counter">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-  /* apple.com web colors: #f5f5f7 page, #1d1d1f ink; black with #f5f5f7 ink in dark mode. */
-  :root { --bg: #F5F5F7; --fg: #1D1D1F; color-scheme: light; }
+  /* Palette: #F7CBCA pink, #DDD3D3 warm gray, #F1F7F7 mint white, #D5E5E5 mist, #B0D7D8 aqua, #5D6B6B slate. */
+  :root { --bg: #F1F7F7; --fg: #2C3636; color-scheme: light; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #000000; --fg: #F5F5F7; color-scheme: dark; }
+    :root:not([data-theme="light"]) { --bg: #1B2222; --fg: #F1F7F7; color-scheme: dark; }
   }
-  :root[data-theme="dark"] { --bg: #000000; --fg: #F5F5F7; color-scheme: dark; }
+  :root[data-theme="dark"] { --bg: #1B2222; --fg: #F1F7F7; color-scheme: dark; }
   /* San Francisco on Apple devices; Inter as the closest match elsewhere. */
   body, body * {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro Icons", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
-  html, body { height: 100%; }
-  body { background: var(--bg); color: var(--fg); overflow: hidden; }
-  #root { display: flex; height: 100%; flex: 1; }
+  /* Lock the page in place: no page scroll, rubber-band bounce, double-tap zoom or tap flash.
+     Only the list of notes and coins scrolls inside the app. */
+  html, body {
+    position: fixed; inset: 0; height: 100%; overflow: hidden;
+    overscroll-behavior: none; touch-action: manipulation;
+    -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body { background: var(--bg); color: var(--fg); }
+  #root { position: fixed; left: 0; right: 0; top: 0; height: 100%; height: 100dvh; display: flex; }
 </style>
+</head><body>
 <noscript>You need to enable JavaScript to use Money Counter.</noscript>
 <div id="root"></div>
+<script>
+/* Keep the app sized to the part of the screen that is actually visible, so the pinned
+   total stays in view when the phone keyboard opens, and undo any page scroll the
+   browser does on its own. */
+(function () {
+  var root = document.getElementById('root'), vv = window.visualViewport;
+  function fit() {
+    if (!vv) return;
+    root.style.height = vv.height + 'px';
+    root.style.transform = vv.offsetTop ? 'translateY(' + vv.offsetTop + 'px)' : '';
+  }
+  if (vv) { vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); fit(); }
+  window.addEventListener('scroll', function () { if (window.scrollY || window.scrollX) window.scrollTo(0, 0); });
+  document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+})();
+</script>
 <script src="app.js" defer></script>
-
 </body></html>
